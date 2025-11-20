@@ -39,8 +39,10 @@ function main() {
         const message = new TextEncoder().encode("hello");
         const public_key = yield ed.getPublicKeyAsync(private_key);
         const signature = yield ed.signAsync(message, private_key);
+        // if someone tries to pass any other message then the block wouldnt be valid and cause error
+        // that is why it is secure
         const message2 = new TextEncoder().encode("hello world");
-        const isValid = yield ed.verifyAsync(signature, message2, public_key);
+        const isValid = yield ed.verifyAsync(signature, message, public_key);
         console.log(isValid);
     });
 }
