@@ -24,19 +24,74 @@ export default function SendTokens(){
         }));
 
         await wallet.sendTransaction(transaction, connection);
-        alert("sent", amount, "to", to);
+        alert(`Sent ${amount} SOL to ${to}`);
     }
 
     return(
         <>
-            <input value={to} onChange={(e) => {
-                setTo(e.target.value);
-            }} placeholder="to"/>
-            <input value={amount} onChange={(e) => {
-                setAmount(e.target.value);
-            }} placeholder="amount"/>
+            <div style={{
+                marginTop: '30px',
+                marginBottom: '20px'
+            }}>
+                <p style={{
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    marginBottom: '10px',
+                    color: 'white'
+                }}>
+                    Send SOL
+                </p>
+                <div style={{
+                    display: 'flex',
+                    gap: '10px',
+                    alignItems: 'center',
+                    flexWrap: 'wrap'
+                }}>
+                    <input 
+                        value={to} 
+                        onChange={(e) => {
+                            setTo(e.target.value);
+                        }} 
+                        placeholder="Recipient address"
+                        style={{
+                            padding: '10px',
+                            fontSize: '16px',
+                            border: '2px solid #ccc',
+                            borderRadius: '5px',
+                            width: '350px'
+                        }}
+                    />
+                    <input 
+                        value={amount} 
+                        onChange={(e) => {
+                            setAmount(e.target.value);
+                        }} 
+                        placeholder="Amount (SOL)"
+                        style={{
+                            padding: '10px',
+                            fontSize: '16px',
+                            border: '2px solid #ccc',
+                            borderRadius: '5px',
+                            width: '150px'
+                        }}
+                    />
 
-            <button onClick={sendTokens}>Send Sol</button>
+                    <button 
+                        onClick={sendTokens}
+                        style={{
+                            padding: '10px 20px',
+                            fontSize: '16px',
+                            backgroundColor: '#512da8',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Send SOL
+                    </button>
+                </div>
+            </div>
         </>
     )
 }

@@ -24,14 +24,43 @@ export default function RequestAirDrop(){
     }
     return(
     <>
-        <div>Request AirDrop</div>
-        <input value={amount}
+        <div style={{
+            fontSize: '24px',
+            fontWeight: 'bold',
+            marginTop: '20px',
+            marginBottom: '10px'
+        }}>
+            Request AirDrop
+        </div>
+        <input 
+            value={amount}
             onChange={(e) => {
                 setAmount(e.target.value)
             }}
-            />
-
-        <button onClick={airdrop}>click me</button>
+            style={{
+                padding: '10px',
+                fontSize: '16px',
+                border: '2px solid #ccc',
+                borderRadius: '5px',
+                marginRight: '10px',
+                width: '200px'
+            }}
+            placeholder="Enter amount in SOL"
+        />
+        <button 
+            onClick={airdrop}
+            style={{
+                padding: '10px 20px',
+                fontSize: '16px',
+                backgroundColor: '#512da8',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer'
+            }}
+        >
+            Request Airdrop
+        </button>
     </>
     )
 }

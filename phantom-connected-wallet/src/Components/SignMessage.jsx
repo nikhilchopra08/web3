@@ -28,13 +28,49 @@ export default function SignMessage(){
 
     return(
         <>
-            <input value={message} onChange={(e) => {
-                setMessgae(e.target.value);
-            }}/>
+            <div style={{
+                marginTop: '30px',
+                marginBottom: '20px'
+            }}>
+                <p style={{
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    marginBottom: '10px',
+                    color: 'white'
+                }}>
+                    Sign Message
+                </p>
+                <input 
+                    value={message} 
+                    onChange={(e) => {
+                        setMessgae(e.target.value);
+                    }}
+                    style={{
+                        padding: '10px',
+                        fontSize: '16px',
+                        border: '2px solid #ccc',
+                        borderRadius: '5px',
+                        marginRight: '10px',
+                        width: '300px'
+                    }}
+                    placeholder="Enter message to sign"
+                />
 
-            <button onClick={onClick}>
-                Sign Message
-            </button>
+                <button 
+                    onClick={onClick}
+                    style={{
+                        padding: '10px 20px',
+                        fontSize: '16px',
+                        backgroundColor: '#512da8',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '5px',
+                        cursor: 'pointer'
+                    }}
+                >
+                    Sign Message
+                </button>
+            </div>
         </>
     )
 }

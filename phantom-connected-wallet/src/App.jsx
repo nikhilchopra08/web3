@@ -9,7 +9,6 @@ import {
 import { clusterApiUrl } from '@solana/web3.js';
 
 import '@solana/wallet-adapter-react-ui/styles.css';
-import './App.css'
 import RequestAirDrop from "./Components/RequestAirDrop";
 import ShowBalance from "./Components/ShowBalance";
 import SignMessage from "./Components/SignMessage";
@@ -23,15 +22,14 @@ function App() {
       <ConnectionProvider endpoint='https://solana-devnet.g.alchemy.com/v2/mRNVIzf44k3YCI1_eQPoO'>
       <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider>
-          <div style={{display : 'flex', justifyContent: "space-between"}}>
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <WalletMultiButton/>
             <WalletDisconnectButton/>
           </div>
-              <RequestAirDrop/>
-              <ShowBalance/>
-              <SignMessage/>
-              <SendTokens/>
-
+          <RequestAirDrop/>
+          <ShowBalance/>
+          <SignMessage/>
+          <SendTokens/>
         </WalletModalProvider>
       </WalletProvider>
       </ConnectionProvider>
