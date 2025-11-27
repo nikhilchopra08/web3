@@ -1,18 +1,18 @@
-import { createPublicClient, http } from "viem";
-import { mainnet } from "viem/chains";
-
-import {QueryClient, QueryClientProvider, useQuery} from "@tanstack/react-query"
+import { http, createConfig, WagmiProvider, useConnect, useAccount, useBalance, useSendTransaction } from "wagmi"
+import { base, mainnet, optimism } from "wagmi/chains"
+import { injected } from "wagmi/connectors";
 import "./App.css"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const client = createPublicClient({
-  chain: mainnet,
-  transport: http()
+export const config = createConfig({
+  chains: [mainnet, base],
+  connectors: [
+    injected(),
+  ],
+  transports: {
+    [mainnet.id]: http(),
+  }
 })
-
-async function getBalance() {
-  const res = await client.getBalance({ address: "0x7d20d863866809d3f4278b80d92764f298039463" })
-  return res.toString();
-}
 
 const queryClient = new QueryClient();
 
@@ -20,23 +20,53 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Todos/>
+        <WagmiProvider config={config}>
+          <WalletConnector />
+          <MyAddress />
+          <EthSend />
+        </WagmiProvider>
       </QueryClientProvider>
+
     </>
   )
 }
 
-function useBalance(){
-  return useQuery({queryKey: ['balance'], queryFn: getBalance, refetchInterval: 10 * 1000});
+function WalletConnector() {
+  const { connectors, connect } = useConnect();
+  return <div>
+    {connectors.map((connector) => (
+      <button key={connector.uid} onClick={() => connect({ connector })}>
+        {connector.name}
+      </button>
+    ))}
+  </div>
 }
 
-function Todos(){
-  const {data, isLoading, error} = useBalance();
+function MyAddress() {
+  const { address } = useAccount();
+  const { balance } = useBalance({ address })
 
-  return(
+  return <div>
+    {address} : 
+    {balance?.data?.formatter}
+  </div>
+}
+
+function EthSend() {
+  const { data : hash, sendTransaction } = useSendTransaction();
+
+  function Send(){
+    console.log("hello")
+    sendTransaction({
+      to: document.getElementById("address").value,
+      value: 100000000000000000 //17 0's = 0.1ETH
+    })
+
+  }
+  return (
     <div>
-      Balance:
-      {data}
+      <input id="address" type="text" placeholder="Address..." />
+      <button onClick={Send}>Send 0.1 Eth</button>
     </div>
   )
 }
