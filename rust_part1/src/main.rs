@@ -17,6 +17,16 @@ fn main() {
 
     let vec = vec![1,2,3];
     println!("{:?}", vec);
+
+    for i in 0..100{
+        println!("{}", i);
+    }
+
+    let mut x : u32 = 0;
+    println!("{}", x);
+    x = 1;
+    println!("{}", x);
+    
 }
 
 fn sum(a : u32, b : u32) -> u32{
