@@ -26,7 +26,23 @@ fn main() {
     println!("{}", x);
     x = 1;
     println!("{}", x);
+
+    let mut name = String::from("Nikhil ");
+    println!("{}", name);
+
+    name.push_str("Chopra");
+    println!("{}", name);
     
+    let name1 = String::from("Nikhil");
+    let (len, name1) = get_len(name1);
+    println!("{}", len);
+
+    println!("the name is {}", name1);
+
+}
+
+fn get_len(s : String) -> (usize, String){
+    return (s.len(), s);
 }
 
 fn sum(a : u32, b : u32) -> u32{
@@ -36,3 +52,6 @@ fn sum(a : u32, b : u32) -> u32{
 fn is_even(a : i32) -> bool{
     return a % 2 == 0;
 }
+
+
+// rust dont allow the people to write bad code
