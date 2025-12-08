@@ -73,3 +73,7 @@ fn calculate_area(s : Shape) -> f32{
 // }
 
 // borrowing , structs. and implement in rust
+
+
+
+// result and option enums
